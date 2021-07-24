@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.scss';
+import ToDoForm from './component/ToDoForm';
 import ToDoList from './component/ToDoList';
 
 
@@ -22,8 +23,15 @@ function App() {
     }
   }
 
+  function onSubmit(data){
+    const newData = {'id': datas[datas.length-1].id +1 || 0,'title': data};
+    datas.push(newData);
+    setDatas([...datas]);
+  }
+
   return (
     <div className="app">
+        <ToDoForm onSubmit = {onSubmit}></ToDoForm>
         <ToDoList 
           datas={datas}
           onClickData={onClickData} 
